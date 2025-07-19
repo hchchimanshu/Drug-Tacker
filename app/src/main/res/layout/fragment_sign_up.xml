@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_16sdp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_signup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_new_account"
+        android:textStyle="bold"
+        android:textSize="@dimen/_22sdp"
+        android:textColor="@color/blue"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Name Field -->
+    <LinearLayout
+        android:id="@+id/name_group_LL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_input_box"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="@string/name_text"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+             />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:hint="@string/name_hint"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_16sdp"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <!-- Email Field -->
+    <LinearLayout
+        android:id="@+id/container_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_input_box"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/name_group_LL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_text"
+            android:layout_marginLeft="@dimen/_9sdp"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_6sdp" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_hint"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_16sdp"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+    <!-- Password Field -->
+    <LinearLayout
+        android:id="@+id/container_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_input_box"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/container_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_text"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_6sdp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint"
+            android:background="@null"
+            android:paddingStart="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_16sdp"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <!-- Create Account Button -->
+    <TextView
+        android:id="@+id/btn_create_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_primary_button"
+        android:text="Create Account"
+        android:gravity="center"
+        android:padding="@dimen/_9sdp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

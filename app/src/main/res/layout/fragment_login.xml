@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_heading"
+        android:textStyle="bold"
+        android:textSize="@dimen/_22sdp"
+        android:textColor="@color/blue"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Email Field Group -->
+    <LinearLayout
+        android:id="@+id/email_group_LL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/bg_input_box"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title"
+        tools:layout_editor_absoluteX="21dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="@string/email_text"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:hint="@string/email_hint"
+            android:background="@null"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+    <!-- Password Field Group -->
+    <LinearLayout
+        android:id="@+id/password_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_input_box"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/email_group_LL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_text"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginLeft="@dimen/_9sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_grey" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint"
+            android:background="@null"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_16sdp"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <!-- Login Button -->
+    <TextView
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_primary_button"
+        android:text="@string/login_button"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_16sdp"
+        android:padding="@dimen/_9sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

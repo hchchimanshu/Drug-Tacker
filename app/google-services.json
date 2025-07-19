@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "740642828016",
+    "project_id": "drugtracker-6ea58",
+    "storage_bucket": "drugtracker-6ea58.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740642828016:android:ed9cb3a24d533367d45c35",
+        "android_client_info": {
+          "package_name": "com.himanshuhc.drugtracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDElUYAEQM_db-4vzQqcZMfoCOhYb4-sxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
