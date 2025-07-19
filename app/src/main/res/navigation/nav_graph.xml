@@ -25,11 +25,42 @@
         android:id="@+id/signupFragment"
         android:name="com.himanshuhc.drugtracker.presentation.auth.SignUpFragment"
         android:label="Signup"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signupFragment_to_myMedicationFragment"
+            app:destination="@id/myMedicationFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.himanshuhc.drugtracker.presentation.auth.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login"/>
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_myMedicationFragment"
+            app:destination="@id/myMedicationFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myMedicationFragment"
+        android:name="com.himanshuhc.drugtracker.presentation.home.MyMedicationFragment"
+        android:label="My Medications"
+        tools:layout="@layout/fragment_my_medication">
+        <action
+            android:id="@+id/action_myMedicationFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:label="Search Medications" />
+<!--        android:name="com.yourapp.presentation.home.SearchFragment"-->
+
+
 </navigation>

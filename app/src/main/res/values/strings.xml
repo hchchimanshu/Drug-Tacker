@@ -17,9 +17,8 @@
     <string name="name_text">Name</string>
     <string name="create_new_account">Create New Account</string>
 
-<!--    welcome fragment-->
+    <!--    welcome fragment-->
     <string name="already_have_an_account">I already have an account</string>
-
 
 
 </resources>

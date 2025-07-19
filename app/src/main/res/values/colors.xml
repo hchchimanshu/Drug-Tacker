@@ -7,4 +7,5 @@
     <color name="light_blue">#E0EAFF</color>
     <color name="grey">#E5E5EA</color>
     <color name="dark_grey">#6e6e6e</color>
+    <color name="background_color">#F2F2F6</color>
 </resources>

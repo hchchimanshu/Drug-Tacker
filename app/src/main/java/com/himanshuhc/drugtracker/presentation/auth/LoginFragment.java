@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +45,7 @@ public class LoginFragment extends Fragment {
         authViewModel.getUserLiveData().observe(getViewLifecycleOwner(), firebaseUser -> {
             if (firebaseUser != null) {
                 Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-//                navigation left
-//                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_myMedicationsFragment);
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_myMedicationFragment);
             }
         });
 
