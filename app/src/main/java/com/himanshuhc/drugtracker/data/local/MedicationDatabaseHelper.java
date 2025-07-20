@@ -42,15 +42,34 @@ public class MedicationDatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Insert Medication
-    public void insertMedication(String name, String rxcui, boolean isCustom) {
+    public boolean insertMedication(String name, String rxcui, boolean isCustom) {
         SQLiteDatabase db = this.getWritableDatabase();
+
+        // Check if medication already exists
+        String selection = COLUMN_NAME + " = ? AND " + COLUMN_RXCUI + " = ?";
+        String[] selectionArgs = { name, rxcui };
+
+        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+
+        if (exists) {
+            db.close();
+            return false; // Already exists
+        }
+
+        // If not exists, insert
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_RXCUI, rxcui);
         values.put(COLUMN_IS_CUSTOM, isCustom ? 1 : 0);
-        db.insert(TABLE_NAME, null, values);
+
+        long result = db.insert(TABLE_NAME, null, values);
         db.close();
+
+        return result != -1; // Return true if insert succeeded
     }
+
 
     // Delete Medication by ID
     public void deleteMedication(int id) {

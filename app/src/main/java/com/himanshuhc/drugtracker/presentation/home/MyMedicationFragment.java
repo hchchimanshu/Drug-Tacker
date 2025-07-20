@@ -82,7 +82,7 @@ public class MyMedicationFragment extends Fragment {
         // Step 6: Handle button to go to SearchFragment (if needed)
         view.findViewById(R.id.btnSearchMedications).setOnClickListener(v -> {
             Toast.makeText(requireContext(), "To Search Screen", Toast.LENGTH_SHORT).show();
-//            Navigation.findNavController(v).navigate(R.id.action_myMedicationFragment_to_searchFragment);
+            Navigation.findNavController(v).navigate(R.id.action_myMedicationFragment_to_searchFragment);
         });
     }
 }

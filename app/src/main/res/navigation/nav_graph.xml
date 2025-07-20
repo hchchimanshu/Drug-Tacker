@@ -59,8 +59,23 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:label="Search Medications" />
-<!--        android:name="com.yourapp.presentation.home.SearchFragment"-->
+        android:name="com.himanshuhc.drugtracker.presentation.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_searchFragment_to_drugDetailFragment"
+            app:destination="@id/drugDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/drugDetailFragment"
+        android:label="Drug Details"
+        />
+<!--    android:name="com.himanshuhc.drugtracker.presentation.detail.DrugDetailFragment"-->
+<!---->
+<!--    tools:layout="@layout/fragment_drug_detail"-->
 
 
 </navigation>

@@ -2,6 +2,8 @@ package com.himanshuhc.drugtracker.domain.repository;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.himanshuhc.drugtracker.data.local.Medication;
 import com.himanshuhc.drugtracker.data.local.MedicationDatabaseHelper;
@@ -22,8 +24,8 @@ public class MedicationRepository {
     }
 
     // Insert a medication into DB
-    public void insertMedication(String name, String rxcui, boolean isCustom) {
-        dbHelper.insertMedication(name, rxcui, isCustom);
+    public boolean insertMedication(String name, String rxcui, boolean isCustom) {
+        return dbHelper.insertMedication(name, rxcui, isCustom);
     }
 
     // Delete medication by ID
@@ -44,6 +46,10 @@ public class MedicationRepository {
     // Check if a medication with the same rxcui already exists
     public boolean medicationExists(String rxcui) {
         return dbHelper.medicationExists(rxcui);
+    }
+
+    public int getTotalMedicationCount() {
+        return getApiDrugCount() + getCustomDrugCount();
     }
 
 }
