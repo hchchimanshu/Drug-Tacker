@@ -18,8 +18,9 @@ public class MedicationDetailViewModel extends ViewModel {
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
-    public void addDrugToLocalList(String name, String rxcui, boolean isFromApi) {
-        executorService.execute(() -> medicationRepository.insertMedication(name,rxcui,isFromApi));
+    public void addDrugToLocalList(String name, String rxcui, boolean isFromApi, Drug drug) {
+        executorService.execute(() -> medicationRepository.insertMedication(name,rxcui,isFromApi, drug.getPsn(),
+                drug.getSynonym(), drug.getTty(), drug.getLanguage(), drug.getSuppress()));
     }
 
     @Override

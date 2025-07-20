@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     android:padding="@dimen/_10sdp">
 
 
         <!-- Back Button -->
-
     <TextView
         android:id="@+id/back_btn"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:drawableStart="@drawable/arrow_back_icon"
         android:drawablePadding="@dimen/_3sdp"
         android:gravity="center_vertical"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="@color/blue"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:id="@+id/tv_search__detail_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Details"
+        android:text="@string/details"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:text="Generic Name"
+            android:text="@string/generic_name"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_1sdp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_search"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_medication"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/genericName">
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_3sdp"
-                    android:text="Details"
+                    android:text="@string/details"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -133,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_primary_button"
-        android:text="Add Medication to List"
+        android:text="@string/add_btn"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/_16sdp"

@@ -42,7 +42,12 @@ public class DrugRepositoryImpl implements DrugRepository {
                                 drugs.add(new Drug(
                                         property.rxcui,
                                         property.psn != null ? property.psn : property.name,
-                                        true
+                                        property.name,
+                                        true,
+                                        property.synonym,
+                                        property.tty,
+                                        property.language,
+                                        property.suppress
                                 ));
 //                                drugs.add(new Drug(property.rxcui, property.psn, true));
                             }

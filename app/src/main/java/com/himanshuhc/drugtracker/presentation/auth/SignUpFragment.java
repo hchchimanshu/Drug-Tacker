@@ -16,9 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.himanshuhc.drugtracker.R;
+import com.himanshuhc.drugtracker.presentation.base.BaseFragment;
 
 
-public class SignUpFragment extends Fragment {
+public class SignUpFragment extends BaseFragment {
 
     private EditText etName, etEmail, etPassword;
     private TextView btnCreateAccount;
@@ -36,6 +37,12 @@ public class SignUpFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+
+        setProgressBar(view, R.id.progressBar);
+
+        authViewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            showProgress(isLoading);
+        });
 
         // View bindings
         etName = view.findViewById(R.id.et_name);

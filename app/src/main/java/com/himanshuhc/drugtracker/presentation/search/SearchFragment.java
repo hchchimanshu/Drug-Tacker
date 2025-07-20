@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.SearchView;
@@ -22,8 +23,9 @@ import com.himanshuhc.drugtracker.data.remote.api.RetrofitClient;
 import com.himanshuhc.drugtracker.data.remote.repository.DrugRepositoryImpl;
 import com.himanshuhc.drugtracker.domain.repository.DrugRepository;
 import com.himanshuhc.drugtracker.domain.repository.MedicationRepository;
+import com.himanshuhc.drugtracker.presentation.base.BaseFragment;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends BaseFragment {
 
     private SearchView searchView;
     private TextView btnSearch;
@@ -43,6 +45,8 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        setProgressBar(view, R.id.progressBar);
 
         searchView = view.findViewById(R.id.searchView);
         btnSearch = view.findViewById(R.id.btn_search);
@@ -64,7 +68,8 @@ public class SearchFragment extends Fragment {
                         String rxcui = item.getRxcui();
                         boolean isCustom = false; // since it's coming from API
 
-                        boolean added = medicationRepository.insertMedication(name, rxcui, isCustom);
+                        boolean added = medicationRepository.insertMedication(name, rxcui, isCustom, item.getName(), item.getSynonym(),
+                                item.getTty(), item.getLanguage(), item.getSuppress());
                         if (added) {
                             Toast.makeText(requireContext(), "Added to My Medications", Toast.LENGTH_SHORT).show();
                         } else {
@@ -79,6 +84,7 @@ public class SearchFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("drug_name", item.getPsn());
                     bundle.putString("rxcui", item.getRxcui());
+                    bundle.putSerializable("drug", item);
                     Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_medicationDetailFragment, bundle);
                 }
         );
@@ -87,12 +93,14 @@ public class SearchFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         viewModel.getSearchResults().observe(getViewLifecycleOwner(), results -> {
+            showProgress(false);
             adapter.updateDrugs(results);
         });
 
         btnSearch.setOnClickListener(v -> {
             String query = searchView.getQuery().toString().trim();
             if (!query.isEmpty()) {
+                showProgress(true);
                 viewModel.searchDrugs(query);
             } else {
                 Toast.makeText(requireContext(), "Enter a search term", Toast.LENGTH_SHORT).show();

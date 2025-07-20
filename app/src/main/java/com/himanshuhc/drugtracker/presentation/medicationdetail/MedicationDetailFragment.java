@@ -18,24 +18,31 @@ import com.himanshuhc.drugtracker.R;
 import com.himanshuhc.drugtracker.domain.model.Drug;
 import com.himanshuhc.drugtracker.domain.repository.MedicationRepository;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MedicationDetailFragment extends Fragment {
 
     private static final String ARG_DRUG_NAME = "drug_name";
     private static final String ARG_RXCUI = "rxcui";
+    private static final String ARG_JSON_RESPONSE = "drug_data_response";
 
     private MedicationDetailViewModel viewModel;
     private String drugName;
     private String rxcui;
+    private Drug drug;
 
     public MedicationDetailFragment() {
         // Required empty constructor
     }
 
-    public static MedicationDetailFragment newInstance(String drugName, String rxcui) {
+    public static MedicationDetailFragment newInstance(String drugName, String rxcui, String jsonResponse) {
         MedicationDetailFragment fragment = new MedicationDetailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_DRUG_NAME, drugName);
         args.putString(ARG_RXCUI, rxcui);
+        args.putString(ARG_JSON_RESPONSE, jsonResponse);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,10 +59,12 @@ public class MedicationDetailFragment extends Fragment {
 
         TextView tvDrugName = view.findViewById(R.id.medicineName);
         TextView btnAddMedication = view.findViewById(R.id.btn_add_medication);
+        TextView tvInstructions = view.findViewById(R.id.medicineInstructions);
 
         if (getArguments() != null) {
             drugName = getArguments().getString(ARG_DRUG_NAME);
             rxcui = getArguments().getString(ARG_RXCUI);
+            drug = (Drug) getArguments().getSerializable("drug");
             tvDrugName.setText(drugName);
         }
 
@@ -69,8 +78,8 @@ public class MedicationDetailFragment extends Fragment {
 
         btnAddMedication.setOnClickListener(v -> {
             if (drugName != null && rxcui != null) {
-                Drug drug = new Drug(rxcui, drugName, true);
-                viewModel.addDrugToLocalList(drugName, rxcui, true);
+//                Drug drug = new Drug(rxcui, drugName, na);
+                viewModel.addDrugToLocalList(drugName, rxcui, true, drug);
 
                 Toast.makeText(requireContext(), "Medication added", Toast.LENGTH_SHORT).show();
 

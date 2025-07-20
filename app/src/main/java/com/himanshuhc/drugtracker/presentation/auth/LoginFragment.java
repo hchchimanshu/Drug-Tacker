@@ -12,15 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.himanshuhc.drugtracker.R;
+import com.himanshuhc.drugtracker.presentation.base.BaseFragment;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     private EditText etEmail, etPassword;
     private TextView btnLogin;
+    private ProgressBar progressBar;
     private AuthViewModel authViewModel;
 
     @Override
@@ -36,9 +39,16 @@ public class LoginFragment extends Fragment {
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
+        setProgressBar(view, R.id.progressBar);
+
+        authViewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            showProgress(isLoading);
+        });
+
         etEmail = view.findViewById(R.id.et_email);
         etPassword = view.findViewById(R.id.et_password);
         btnLogin = view.findViewById(R.id.btn_login);
+        progressBar = view.findViewById(R.id.progressBar);
 
         btnLogin.setOnClickListener(v -> loginUser());
 

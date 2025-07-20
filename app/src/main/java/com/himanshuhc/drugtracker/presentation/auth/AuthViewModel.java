@@ -13,9 +13,17 @@ public class AuthViewModel extends ViewModel {
     private final MutableLiveData<FirebaseUser> userLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> errorLiveData = new MutableLiveData<>();
 
+    private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
+
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
+    }
+
     public void login(String email, String password) {
+        isLoading.setValue(true);
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
+                    isLoading.setValue(false);
                     if (task.isSuccessful()) {
                         userLiveData.setValue(firebaseAuth.getCurrentUser());
                     } else {
@@ -25,8 +33,10 @@ public class AuthViewModel extends ViewModel {
     }
 
     public void signup(String email, String password) {
+        isLoading.setValue(true);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
+                    isLoading.setValue(false);
                     if (task.isSuccessful()) {
                         userLiveData.setValue(firebaseAuth.getCurrentUser());
                     } else {

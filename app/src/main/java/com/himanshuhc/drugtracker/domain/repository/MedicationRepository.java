@@ -24,9 +24,11 @@ public class MedicationRepository {
     }
 
     // Insert a medication into DB
-    public boolean insertMedication(String name, String rxcui, boolean isCustom) {
-        return dbHelper.insertMedication(name, rxcui, isCustom);
+    public boolean insertMedication(String name, String rxcui, boolean isCustom,
+                                    String psn, String synonym, String tty, String language, String suppress) {
+        return dbHelper.insertMedication(name, rxcui, isCustom, psn, synonym, tty, language, suppress);
     }
+
 
     // Delete medication by ID
     public void deleteMedication(int id) {

@@ -30,7 +30,12 @@ public class MedicationDatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_NAME + " TEXT,"
                 + COLUMN_RXCUI + " TEXT,"
-                + COLUMN_IS_CUSTOM + " INTEGER"
+                + COLUMN_IS_CUSTOM + " INTEGER,"
+                + "psn TEXT,"
+                + "synonym TEXT,"
+                + "tty TEXT,"
+                + "language TEXT,"
+                + "suppress TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE);
     }
@@ -42,7 +47,8 @@ public class MedicationDatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Insert Medication
-    public boolean insertMedication(String name, String rxcui, boolean isCustom) {
+    public boolean insertMedication(String name, String rxcui, boolean isCustom,
+                                    String psn, String synonym, String tty, String language, String suppress) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Check if medication already exists
@@ -58,17 +64,50 @@ public class MedicationDatabaseHelper extends SQLiteOpenHelper {
             return false; // Already exists
         }
 
-        // If not exists, insert
+        // Insert new medication
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_RXCUI, rxcui);
         values.put(COLUMN_IS_CUSTOM, isCustom ? 1 : 0);
+        values.put("psn", psn);
+        values.put("synonym", synonym);
+        values.put("tty", tty);
+        values.put("language", language);
+        values.put("suppress", suppress);
 
         long result = db.insert(TABLE_NAME, null, values);
         db.close();
 
-        return result != -1; // Return true if insert succeeded
+        return result != -1;
     }
+
+//    public boolean insertMedication(String name, String rxcui, boolean isCustom) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        // Check if medication already exists
+//        String selection = COLUMN_NAME + " = ? AND " + COLUMN_RXCUI + " = ?";
+//        String[] selectionArgs = { name, rxcui };
+//
+//        Cursor cursor = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null);
+//        boolean exists = cursor.moveToFirst();
+//        cursor.close();
+//
+//        if (exists) {
+//            db.close();
+//            return false; // Already exists
+//        }
+//
+//        // If not exists, insert
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_NAME, name);
+//        values.put(COLUMN_RXCUI, rxcui);
+//        values.put(COLUMN_IS_CUSTOM, isCustom ? 1 : 0);
+//
+//        long result = db.insert(TABLE_NAME, null, values);
+//        db.close();
+//
+//        return result != -1; // Return true if insert succeeded
+//    }
 
 
     // Delete Medication by ID
@@ -91,13 +130,23 @@ public class MedicationDatabaseHelper extends SQLiteOpenHelper {
                 String rxcui = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RXCUI));
                 boolean isCustom = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_CUSTOM)) == 1;
 
-                list.add(new Medication(id, name, rxcui, isCustom));
+                // New fields
+                String psn = cursor.getString(cursor.getColumnIndexOrThrow("psn"));
+                String synonym = cursor.getString(cursor.getColumnIndexOrThrow("synonym"));
+                String tty = cursor.getString(cursor.getColumnIndexOrThrow("tty"));
+                String language = cursor.getString(cursor.getColumnIndexOrThrow("language"));
+                String suppress = cursor.getString(cursor.getColumnIndexOrThrow("suppress"));
+
+                // Assuming you've updated the Medication model accordingly:
+                list.add(new Medication(id, name, rxcui, isCustom, psn, synonym, tty, language, suppress));
             } while (cursor.moveToNext());
         }
+
         cursor.close();
         db.close();
         return list;
     }
+
 
     // Count custom medications
     public int getCustomDrugCount() {

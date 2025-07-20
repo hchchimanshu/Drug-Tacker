@@ -11,8 +11,14 @@ public class ConceptPropertyDto {
     public String name;
 
     @SerializedName("synonym")
-    private String synonym;
+    public String synonym;
 
     @SerializedName("psn")
     public String psn;
+    @SerializedName("tty")
+    public String tty;
+    @SerializedName("language")
+    public String language;
+    @SerializedName("suppress")
+    public String suppress;
 }
