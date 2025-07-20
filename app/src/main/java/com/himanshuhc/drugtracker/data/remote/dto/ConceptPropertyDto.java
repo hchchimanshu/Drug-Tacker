@@ -9,4 +9,10 @@ public class ConceptPropertyDto {
 
     @SerializedName("name")
     public String name;
+
+    @SerializedName("synonym")
+    private String synonym;
+
+    @SerializedName("psn")
+    public String psn;
 }

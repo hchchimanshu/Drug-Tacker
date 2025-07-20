@@ -60,7 +60,7 @@ public class SearchFragment extends Fragment {
                     int count = medicationRepository.getTotalMedicationCount();
                     if (count < MAX_MEDICATIONS) {
                         // Extract name and rxcui from Drug
-                        String name = item.getName();
+                        String name = item.getPsn();
                         String rxcui = item.getRxcui();
                         boolean isCustom = false; // since it's coming from API
 
@@ -77,8 +77,9 @@ public class SearchFragment extends Fragment {
                 item -> {
                     // TODO: You may pass drug ID or full object if needed for details
                     Bundle bundle = new Bundle();
-                    bundle.putString("drugName", item.getName()); // assuming drugName is enough
-                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_drugDetailFragment, bundle);
+                    bundle.putString("drug_name", item.getPsn());
+                    bundle.putString("rxcui", item.getRxcui());
+                    Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_medicationDetailFragment, bundle);
                 }
         );
 

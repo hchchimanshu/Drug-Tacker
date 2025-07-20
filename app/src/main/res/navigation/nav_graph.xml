@@ -64,14 +64,16 @@
         tools:layout="@layout/fragment_search">
 
         <action
-            android:id="@+id/action_searchFragment_to_drugDetailFragment"
-            app:destination="@id/drugDetailFragment" />
+            android:id="@+id/action_searchFragment_to_medicationDetailFragment"
+            app:destination="@id/medicationDetailFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/drugDetailFragment"
+        android:id="@+id/medicationDetailFragment"
+        android:name="com.himanshuhc.drugtracker.presentation.medicationdetail.MedicationDetailFragment"
         android:label="Drug Details"
+        tools:layout="@layout/fragment_medication_detail"
         />
 <!--    android:name="com.himanshuhc.drugtracker.presentation.detail.DrugDetailFragment"-->
 <!---->

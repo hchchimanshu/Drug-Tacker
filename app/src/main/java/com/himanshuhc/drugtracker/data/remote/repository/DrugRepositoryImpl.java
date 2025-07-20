@@ -39,7 +39,12 @@ public class DrugRepositoryImpl implements DrugRepository {
 
                             for (ConceptPropertyDto property : group.conceptProperties) {
                                 if (drugs.size() >= 10) break;
-                                drugs.add(new Drug(property.rxcui, property.name, true));
+                                drugs.add(new Drug(
+                                        property.rxcui,
+                                        property.psn != null ? property.psn : property.name,
+                                        true
+                                ));
+//                                drugs.add(new Drug(property.rxcui, property.psn, true));
                             }
                         }
                     }

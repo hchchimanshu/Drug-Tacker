@@ -2,12 +2,12 @@ package com.himanshuhc.drugtracker.domain.model;
 
 public class Drug {
     private final String rxcui;
-    private final String name;
+    private final String psn;
     private final boolean isFromApi;
 
-    public Drug(String rxcui, String name, boolean isFromApi) {
+    public Drug(String rxcui, String psn, boolean isFromApi) {
         this.rxcui = rxcui;
-        this.name = name;
+        this.psn = psn;
         this.isFromApi = isFromApi;
     }
 
@@ -15,8 +15,8 @@ public class Drug {
         return rxcui;
     }
 
-    public String getName() {
-        return name;
+    public String getPsn() {
+        return psn;
     }
 
     public boolean isFromApi() {
