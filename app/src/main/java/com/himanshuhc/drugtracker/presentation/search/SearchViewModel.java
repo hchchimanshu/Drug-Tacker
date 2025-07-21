@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.himanshuhc.drugtracker.data.remote.api.RetrofitClient;
-import com.himanshuhc.drugtracker.data.remote.repository.DrugRepositoryImpl;
 import com.himanshuhc.drugtracker.domain.model.Drug;
 import com.himanshuhc.drugtracker.domain.repository.DrugRepository;
 import com.himanshuhc.drugtracker.utils.RxCallback;

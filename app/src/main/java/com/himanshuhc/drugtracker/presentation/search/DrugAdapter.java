@@ -8,8 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.himanshuhc.drugtracker.R;
@@ -28,9 +26,9 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.DrugViewHolder
     private final Consumer<Drug> onItemClick;
 //    private final OnDrugClickListener listener;
 
-    public interface OnDrugClickListener {
-        void onDrugClick(Drug drug);
-    }
+//    public interface OnDrugClickListener {
+//        void onDrugClick(Drug drug);
+//    }
 
     public DrugAdapter(Consumer<Drug> onAddClick, Consumer<Drug> onItemClick) {
         this.onAddClick = onAddClick;

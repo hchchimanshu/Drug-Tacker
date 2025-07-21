@@ -37,6 +37,9 @@ public class LoginFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set status bar color to match the fragment background
+        setStatusBarColor(R.color.white);
+
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
         setProgressBar(view, R.id.progressBar);

@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.himanshuhc.drugtracker.R;
+import com.himanshuhc.drugtracker.presentation.base.BaseFragment;
 
-public class WelcomeFragment extends Fragment {
-
+public class WelcomeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,6 +26,9 @@ public class WelcomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Set status bar color to match the fragment background
+        setStatusBarColor(R.color.light_blue);
 
         // Navigate on a button click or conditionally
         view.findViewById(R.id.btn_create_account).setOnClickListener(v ->

@@ -55,6 +55,10 @@
         <action
             android:id="@+id/action_myMedicationFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+
+        <action
+            android:id="@+id/action_myMedicationFragment_to_medicationDetailFragment"
+            app:destination="@id/medicationDetailFragment" />
     </fragment>
 
     <fragment
@@ -74,10 +78,13 @@
         android:name="com.himanshuhc.drugtracker.presentation.medicationdetail.MedicationDetailFragment"
         android:label="Drug Details"
         tools:layout="@layout/fragment_medication_detail"
-        />
-<!--    android:name="com.himanshuhc.drugtracker.presentation.detail.DrugDetailFragment"-->
-<!---->
-<!--    tools:layout="@layout/fragment_drug_detail"-->
+        >
+        <action
+            android:id="@+id/action_medicationDetailFragment_to_myMedicationFragment"
+            app:destination="@id/myMedicationFragment" />
+
+
+    </fragment>
 
 
 </navigation>

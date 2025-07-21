@@ -18,8 +18,9 @@ import android.widget.Toast;
 
 import com.himanshuhc.drugtracker.R;
 import com.himanshuhc.drugtracker.data.local.Medication;
+import com.himanshuhc.drugtracker.presentation.base.BaseFragment;
 
-public class MyMedicationFragment extends Fragment {
+public class MyMedicationFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private MedicationAdapter adapter;
@@ -36,6 +37,9 @@ public class MyMedicationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set status bar color to match the fragment background
+        setStatusBarColor(R.color.background_color);
+
         // Step 1: Initialize RecyclerView
         recyclerView = view.findViewById(R.id.rvMedications);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -45,12 +49,13 @@ public class MyMedicationFragment extends Fragment {
         // Step 2: Initialize ViewModel
         viewModel = new ViewModelProvider(this).get(MyMedicationViewModel.class);
 
-//        // For testing only — insert one API drug and one custom drug if not already present
+        // For testing only — insert one API drug and one custom drug if not already present
 //        if (!viewModel.medicationExists("12345")) {
-//            viewModel.insertMedication("Paracetamol", "12345", false); // API drug
+//            viewModel.insertMedication("Paracetamol", "12345", false,"Paracetamol", "para", "SBD","ENG","N"); // API drug
 //        }
 //        if (!viewModel.medicationExists("99999")) {
-//            viewModel.insertMedication("My Custom Med", "99999", true); // Custom drug
+//            viewModel.insertMedication("My Custom Med", "99999", true,"ANACIN 400 MG / 32 MG Oral Tablet",
+//                    "ASA 400 MG / Caffeine 32 MG Oral Tablet [Anacin]", "SBD", "ENG", "N" );
 //        }
         viewModel.loadMedications(); // Reload the list after insert
 
@@ -81,7 +86,7 @@ public class MyMedicationFragment extends Fragment {
 
         // Step 6: Handle button to go to SearchFragment (if needed)
         view.findViewById(R.id.btnSearchMedications).setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "To Search Screen", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireContext(), "To Search Screen", Toast.LENGTH_SHORT).show();
             Navigation.findNavController(v).navigate(R.id.action_myMedicationFragment_to_searchFragment);
         });
     }

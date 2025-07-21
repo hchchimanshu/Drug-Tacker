@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/_10sdp"
     android:background="@color/background_color">
 
@@ -12,7 +12,7 @@
         android:id="@+id/tvMyMedications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Medications"
+        android:text="@string/my_medications"
         android:layout_marginTop="@dimen/_20sdp"
         android:textSize="@dimen/_18sdp"
         android:textStyle="bold"
@@ -27,18 +27,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:layout_marginBottom="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/tvMyMedications"
         app:layout_constraintBottom_toTopOf="@id/btnSearchMedications"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingTop="@dimen/_8sdp"
-        android:paddingBottom="@dimen/_12sdp" />
+        android:paddingBottom="@dimen/_12sdp"
+        tools:listitem="@layout/item_medication"/>
 
     <TextView
         android:id="@+id/btnSearchMedications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Search Medications"
+        android:text="@string/search_hint"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
         android:textColor="@color/blue"

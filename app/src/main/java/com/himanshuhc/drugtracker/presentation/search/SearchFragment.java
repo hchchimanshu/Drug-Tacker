@@ -1,10 +1,10 @@
 package com.himanshuhc.drugtracker.presentation.search;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.BaseAdapter;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.SearchView;
@@ -46,6 +47,9 @@ public class SearchFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set status bar color to match the fragment background
+        setStatusBarColor(R.color.background_color);
+
         setProgressBar(view, R.id.progressBar);
 
         searchView = view.findViewById(R.id.searchView);
@@ -53,11 +57,17 @@ public class SearchFragment extends BaseFragment {
         recyclerView = view.findViewById(R.id.rv_search_results);
         TextView backBtn = view.findViewById(R.id.back_btn);
 
+        // Ensure it's expanded and focused
+        searchView.setIconifiedByDefault(false);
+        searchView.setIconified(false);
+        searchView.clearFocus(); // if you don't want keyboard up immediately
+
+        searchView.setQueryHint(getString(R.string.search_hint));
+
         medicationRepository = new MedicationRepository(requireContext());
         DrugRepository repository = new DrugRepositoryImpl(RetrofitClient.getApiService());
         SearchViewModelFactory factory = new SearchViewModelFactory(repository);
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
-//        viewModel = new ViewModelProvider(this).get(SearchViewModel.class);
 
         adapter = new DrugAdapter(
                 item -> {
@@ -85,6 +95,7 @@ public class SearchFragment extends BaseFragment {
                     bundle.putString("drug_name", item.getPsn());
                     bundle.putString("rxcui", item.getRxcui());
                     bundle.putSerializable("drug", item);
+                    bundle.putBoolean("isFromSearch", true);
                     Navigation.findNavController(view).navigate(R.id.action_searchFragment_to_medicationDetailFragment, bundle);
                 }
         );
@@ -98,6 +109,7 @@ public class SearchFragment extends BaseFragment {
         });
 
         btnSearch.setOnClickListener(v -> {
+            hideKeyboard();
             String query = searchView.getQuery().toString().trim();
             if (!query.isEmpty()) {
                 showProgress(true);
@@ -108,5 +120,13 @@ public class SearchFragment extends BaseFragment {
         });
 
         backBtn.setOnClickListener(v -> Navigation.findNavController(view).popBackStack());
+    }
+
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

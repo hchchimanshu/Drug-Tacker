@@ -46,4 +46,24 @@ public class Medication {
     public boolean isCustom() {
         return isCustom;
     }
+
+    public String getPsn() {
+        return psn;
+    }
+
+    public String getSynonym() {
+        return synonym;
+    }
+
+    public String getTty() {
+        return tty;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getSuppress() {
+        return suppress;
+    }
 }
